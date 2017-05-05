@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Nota list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Interrogatorio</th>
+                <th>Exploracion</th>
+                <th>Diagnostico</th>
+                <th>Receta</th>
+                <th>Estudios</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for notum in notas %}
+            <tr>
+                <td><a href="{{ path('nota_show', { 'id': notum.id }) }}">{{ notum.id }}</a></td>
+                <td>{{ notum.interrogatorio }}</td>
+                <td>{{ notum.exploracion }}</td>
+                <td>{{ notum.diagnostico }}</td>
+                <td>{{ notum.receta }}</td>
+                <td>{{ notum.estudios }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('nota_show', { 'id': notum.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('nota_edit', { 'id': notum.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('nota_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

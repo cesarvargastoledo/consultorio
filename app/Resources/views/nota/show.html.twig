@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Nota</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ notum.id }}</td>
+            </tr>
+            <tr>
+                <th>Interrogatorio</th>
+                <td>{{ notum.interrogatorio }}</td>
+            </tr>
+            <tr>
+                <th>Exploracion</th>
+                <td>{{ notum.exploracion }}</td>
+            </tr>
+            <tr>
+                <th>Diagnostico</th>
+                <td>{{ notum.diagnostico }}</td>
+            </tr>
+            <tr>
+                <th>Receta</th>
+                <td>{{ notum.receta }}</td>
+            </tr>
+            <tr>
+                <th>Estudios</th>
+                <td>{{ notum.estudios }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('nota_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('nota_edit', { 'id': notum.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
