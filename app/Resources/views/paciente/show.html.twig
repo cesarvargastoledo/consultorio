@@ -33,10 +33,6 @@
                 <th>Updatedat</th>
                 <td>{% if paciente.updatedAt %}{{ paciente.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ paciente.slug }}</td>
-            </tr>
         </tbody>
     </table>
 
@@ -45,7 +41,7 @@
             <a href="{{ path('paciente_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('paciente_edit', { 'id': paciente.id }) }}">Edit</a>
+            <a href="{{ path('paciente_edit', { 'slug': paciente.slug }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

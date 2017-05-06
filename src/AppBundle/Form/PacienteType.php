@@ -19,9 +19,6 @@ class PacienteType extends AbstractType
             ->add('paterno')
             ->add('materno')
             ->add('telefono')
-            ->add('createdAt', 'datetime')
-            ->add('updatedAt', 'datetime')
-            ->add('slug')
         ;
     }
     

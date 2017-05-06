@@ -1,16 +1,70 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Paciente creation</h1>
-
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>Paciente</h1>
+    </section>
+    <div class="content">
+        <div class="alert-danger">{{ form_errors(form) }}</div>
+        <div class="col-md-12 col-sm-6 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3>Datos del paciente</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Nombre(s)</label>
+                                {{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}
+                                <span class="text-dange">{{ form_errors(form.nombre) }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Apellido Paterno</label>
+                                {{ form_widget(form.paterno, {'attr': {'class': 'form-control'}}) }}
+                                <span class="text-danger">{{ form_errors(form.paterno) }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Apellido Materno</label>
+                                {{ form_widget(form.materno, {'attr': {'class': 'form-control'}}) }}
+                                <span class="text-danger">{{ form_errors(form.materno) }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Telefono</label>
+                                {{ form_widget(form.telefono, {'attr': {'class': 'form-control'}}) }}
+                                <span class="text-danger">{{ form_errors(form.telefono) }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    {{ form_widget(form) }}
+                    <input class="btn btn-primary btn-sm" type="submit" value="Guardar cambios">
+
+                </div>
+                <ul>
+                    <li>
+                        <a href="{{ path('paciente_index') }}">Back to the list</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('paciente_index') }}">Back to the list</a>
-        </li>
-    </ul>
+
+
+
+
 {% endblock %}

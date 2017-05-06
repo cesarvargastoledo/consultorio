@@ -50,7 +50,7 @@ class PacienteController extends Controller
             $em->persist($paciente);
             $em->flush();
 
-            return $this->redirectToRoute('paciente_show', array('id' => $paciente->getId()));
+            return $this->redirectToRoute('paciente_show', array('slug' => $paciente->getSlug()));
         }
 
         return $this->render('paciente/new.html.twig', array(
@@ -62,7 +62,7 @@ class PacienteController extends Controller
     /**
      * Finds and displays a Paciente entity.
      *
-     * @Route("/{id}", name="paciente_show")
+     * @Route("/{slug}", name="paciente_show")
      * @Method("GET")
      */
     public function showAction(Paciente $paciente)
@@ -78,7 +78,7 @@ class PacienteController extends Controller
     /**
      * Displays a form to edit an existing Paciente entity.
      *
-     * @Route("/{id}/edit", name="paciente_edit")
+     * @Route("/{slug}/edit", name="paciente_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Paciente $paciente)
@@ -92,7 +92,7 @@ class PacienteController extends Controller
             $em->persist($paciente);
             $em->flush();
 
-            return $this->redirectToRoute('paciente_edit', array('id' => $paciente->getId()));
+            return $this->redirectToRoute('paciente_edit', array('slug' => $paciente->getSlug()));
         }
 
         return $this->render('paciente/edit.html.twig', array(

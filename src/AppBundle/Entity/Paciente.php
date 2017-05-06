@@ -66,9 +66,8 @@ class Paciente
     private $updatedAt;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=90)
+     * @Gedmo\Slug(fields={"paterno", "materno", "nombre"})
+     * @ORM\Column(name="slug", type="string", length=60, unique=true)
      */
     private $slug;
 
@@ -80,7 +79,9 @@ class Paciente
      */
     private $notas;
 
-
+    public function __construct() {
+        $this->notas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -246,7 +247,7 @@ class Paciente
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -269,5 +270,16 @@ class Paciente
         $this->notas = $notas;
     }
 
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
 
+    public function __toString() {
+        return $this->slug;
+    }
 }
