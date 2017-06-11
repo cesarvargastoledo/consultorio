@@ -66,7 +66,7 @@ class Paciente
     private $updatedAt;
 
     /**
-     * @Gedmo\Slug(fields={"paterno", "materno", "nombre"})
+     * @Gedmo\Slug(fields={"nombre", "paterno", "materno"})
      * @ORM\Column(name="slug", type="string", length=60, unique=true)
      */
     private $slug;

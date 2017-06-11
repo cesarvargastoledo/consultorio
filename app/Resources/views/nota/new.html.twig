@@ -1,12 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Nota creation</h1>
-
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>Nueva Nota</h1>
+    </section>
+<div class="content">
+    <div class="alert-danger">{{ form_errors(form) }}</div>
+    <div class="col-md-12 col-sm-6 col-xs-12">
+        <div class="box box-primary">
+
+
+
+            {{ form_widget(form) }}
+            <input type="submit" value="Create" />
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+</div>
+
 
     <ul>
         <li>
@@ -14,3 +28,26 @@
         </li>
     </ul>
 {% endblock %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#myModal").modal('show');
+
+        });
+
+    </script>
+    <script src="/path/to/multi-step-modal.js"></script>
+    <script>
+        sendEvent = function() {
+            $('#myModal').trigger('next.m.2');
+        }
+    </script>
+
+{% endblock %}
+
+

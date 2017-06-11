@@ -1,52 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Paciente</h1>
+    <div class="content-wrapper">
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ paciente.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ paciente.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Paterno</th>
-                <td>{{ paciente.paterno }}</td>
-            </tr>
-            <tr>
-                <th>Materno</th>
-                <td>{{ paciente.materno }}</td>
-            </tr>
-            <tr>
-                <th>Telefono</th>
-                <td>{{ paciente.telefono }}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
-                <td>{% if paciente.createdAt %}{{ paciente.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Updatedat</th>
-                <td>{% if paciente.updatedAt %}{{ paciente.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+        <section class="content-header">
+            <h1>{{ paciente.paterno }} {{ paciente.materno }} {{ paciente.nombre }}</h1>
+        </section>
 
-    <ul>
-        <li>
-            <a href="{{ path('paciente_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('paciente_edit', { 'slug': paciente.slug }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                    <span class="info-box-icon bg-aqua-active">
+                        <i class="fa fa-university"></i>
+                    </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">{{ paciente.paterno }} {{ paciente.materno }} {{ paciente.nombre }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+            </div>
+            <table>
+                <tbody>
+
+
+                </tbody>
+            </table>
+
+            <a class="btn btn-warning btn-sm" href="{{ path('nota_new', { 'slug': paciente.slug }) }}" role="button">
+                <i class="fa fa-plus" aria-hidden="true"></i> Crear nota</a>
+
+            <ul>
+                <li>
+                    <a href="{{ path('paciente_index') }}">Back to the list</a>
+                </li>
+                <li>
+                    <a href="{{ path('paciente_edit', { 'slug': paciente.slug }) }}">Edit</a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+        </section>
+    </div>
 {% endblock %}

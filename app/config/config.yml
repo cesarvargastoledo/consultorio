@@ -30,6 +30,15 @@ framework:
     fragments:       ~
     http_method_override: true
 
+
+ivory_ck_editor:
+    configs:
+        my_config:
+            toolbar:  [["Bold", "Italic", "Underline", "Strike",  "NumberedList", "BulletedList",  "Outdent", "Indent",  "Blockquote" , "Link", "Unlink"]]
+            uiColor:  "#F2F2F2"
+            forcePasteAsPlainText: true
+            language: es
+
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"

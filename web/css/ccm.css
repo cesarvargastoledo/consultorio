@@ -1,0 +1,8 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.panel-body {
+    padding: 15px;
+    min-height: 700px;
+}

@@ -20,23 +20,20 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Telefono</th>
-                                <th>Actions</th>
+                                <th> </th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for paciente in pacientes %}
                                 <tr>
-                                    <td><a href="{{ path('paciente_show', { 'slug': paciente.slug }) }}">{{ paciente.paterno }} {{ paciente.materno }} {{ paciente.nombre }}</a></td>
+                                    <td><a href="{{ path('paciente_show', { 'slug': paciente.slug }) }}"> {{ paciente.nombre }} {{ paciente.paterno }} {{ paciente.materno }}</a></td>
                                     <td>{{ paciente.telefono }}</td>
 
                                     <td>
                                         <ul>
-                                            <li>
-                                                <a href="{{ path('paciente_show', { 'slug': paciente.slug }) }}">show</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ path('paciente_edit', { 'slug': paciente.slug }) }}">edit</a>
-                                            </li>
+
+                                            <a class="btn btn-warning btn-sm" href="{{ path('nota_new', { 'slug': paciente.slug }) }}" role="button">
+                                                <i class="fa fa-plus" aria-hidden="true"></i> Crear nota</a>
                                         </ul>
                                     </td>
                                 </tr>
