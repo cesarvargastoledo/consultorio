@@ -15,26 +15,11 @@ class NotaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('interrogatorio', 'ckeditor', array(
-                'required' => true,
-                'config_name' => 'my_config'
-            ))
-            ->add('exploracion', 'ckeditor', array(
-                'required' => true,
-                'config_name' => 'my_config'
-            ))
-            ->add('diagnostico', 'ckeditor', array(
-                'required' => true,
-                'config_name' => 'my_config'
-            ))
-            ->add('receta', 'ckeditor', array(
-                'required' => true,
-                'config_name' => 'my_config'
-            ))
-            ->add('estudios', 'ckeditor', array(
-                'required' => true,
-                'config_name' => 'my_config'
-            ))
+            ->add('interrogatorio')
+            ->add('exploracion')
+            ->add('diagnostico')
+            ->add('receta')
+            ->add('estudios')
         ;
     }
     
