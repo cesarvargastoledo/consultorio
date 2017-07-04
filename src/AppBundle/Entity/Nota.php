@@ -3,12 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Nota
  *
  * @ORM\Table(name="nota")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\NotaRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Nota
 {
@@ -56,6 +59,11 @@ class Nota
      */
     private $estudios;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
     private $createdAt;
 
     /**
@@ -66,22 +74,16 @@ class Nota
     private $updatedAt;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=90)
-     */
-    private $slug;
-
-    /**
      * Many Notas have One Paciente.
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Paciente", inversedBy="notas")
+     * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id")
      */
-    private $alumno;
+    private $pacientes;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -104,7 +106,7 @@ class Nota
     /**
      * Get interrogatorio
      *
-     * @return string 
+     * @return string
      */
     public function getInterrogatorio()
     {
@@ -127,7 +129,7 @@ class Nota
     /**
      * Get exploracion
      *
-     * @return string 
+     * @return string
      */
     public function getExploracion()
     {
@@ -150,7 +152,7 @@ class Nota
     /**
      * Get diagnostico
      *
-     * @return string 
+     * @return string
      */
     public function getDiagnostico()
     {
@@ -173,7 +175,7 @@ class Nota
     /**
      * Get receta
      *
-     * @return string 
+     * @return string
      */
     public function getReceta()
     {
@@ -196,7 +198,7 @@ class Nota
     /**
      * Get estudios
      *
-     * @return string 
+     * @return string
      */
     public function getEstudios()
     {
@@ -204,7 +206,7 @@ class Nota
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -212,7 +214,7 @@ class Nota
     }
 
     /**
-     * @param mixed $createdAt
+     * @param \DateTime createdAt
      */
     public function setCreatedAt($createdAt)
     {
@@ -236,36 +238,31 @@ class Nota
     }
 
     /**
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * @param string $slug
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-    }
-
-    /**
      * @return mixed
      */
-    public function getAlumno()
+    public function getPacientes()
     {
-        return $this->alumno;
+        return $this->pacientes;
     }
 
     /**
-     * @param mixed $alumno
+     * @param mixed $pacientes
      */
-    public function setAlumno($alumno)
+    public function setPacientes($pacientes)
     {
-        $this->alumno = $alumno;
+        $this->pacientes = $pacientes;
     }
 
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
 
+    public function __toString() {
+        return  $this->getPacientes() ;
+    }
 }

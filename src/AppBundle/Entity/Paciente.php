@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Paciente
  *
@@ -71,16 +73,18 @@ class Paciente
      */
     private $slug;
 
-
     /**
      * One Paciente has Many Notas.
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Nota", mappedBy="paciente")
-     * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Nota", mappedBy="pacientes")
      */
     private $notas;
 
-    public function __construct() {
-        $this->notas = new \Doctrine\Common\Collections\ArrayCollection();
+    /**
+     * Constructor de la clase
+     */
+    public function __construct()
+    {
+        $this->notas = new ArrayCollection();
     }
 
     /**
@@ -255,6 +259,19 @@ class Paciente
     }
 
     /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    public function __toString() {
+        return $this->slug;
+    }
+
+    /**
      * @return mixed
      */
     public function getNotas()
@@ -271,15 +288,25 @@ class Paciente
     }
 
     /**
-     * @ORM\PrePersist
+     * Add notas
+     *
+     * @param \AppBundle\Entity\Nota $notas
+     * @return Paciente
      */
-    public function setCreatedAtValue()
+    public function addNota(\AppBundle\Entity\Nota $notas)
     {
-        $this->createdAt = new \DateTime();
-        $this->updatedAt = new \DateTime();
+        $this->notas[] = $notas;
+
+        return $this;
     }
 
-    public function __toString() {
-        return $this->slug;
+    /**
+     * Remove notas
+     *
+     * @param \AppBundle\Entity\Nota $notas
+     */
+    public function removeNota(\AppBundle\Entity\Nota $notas)
+    {
+        $this->notas->removeElement($notas);
     }
 }
